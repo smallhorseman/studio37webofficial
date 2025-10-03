@@ -20,6 +20,10 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
         background-color: #181818;
         color: #F3E3C3;
+        /* Fix webkit text size adjust issue */
+        -webkit-text-size-adjust: 100%;
+        -moz-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
       
       #root {
@@ -48,6 +52,16 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
+      
+      /* Prevent FOUC and improve loading experience */
+      .app-loading {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      
+      .app-loaded {
+        opacity: 1;
+      }
     </style>
   </head>
   <body>
@@ -59,5 +73,22 @@
       </div>
     </div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Remove HubSpot script that's causing errors -->
+    <!-- ServiceWorker registration with error handling -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            })
+            .catch(function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+              // Continue without service worker
+            });
+        });
+      }
+    </script>
   </body>
 </html>
