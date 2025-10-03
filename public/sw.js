@@ -1,39 +1,39 @@
-const CACHE_NAME = 'studio37-v1';
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
-];
+// Minimal service worker that doesn't intercept requests
+// This prevents the service worker errors
 
-// Install event
+const CACHE_NAME = 'studio37-v2';
+
+// Install event - just activate immediately
 self.addEventListener('install', function(event) {
+  console.log('Service Worker: Install event');
+  self.skipWaiting();
+});
+
+// Activate event - clean up old caches
+self.addEventListener('activate', function(event) {
+  console.log('Service Worker: Activate event');
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(function(cache) {
-        return cache.addAll(urlsToCache);
-      })
-      .catch(function(error) {
-        console.log('Cache installation failed:', error);
-      })
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Service Worker: Deleting old cache', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(function() {
+      return self.clients.claim();
+    })
   );
 });
 
-// Fetch event with better error handling
+// Don't intercept fetch requests to avoid errors
+// Just let the browser handle all requests normally
 self.addEventListener('fetch', function(event) {
-  // Skip non-GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
-  
-  // Skip external requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
-  
-  event.respondWith(
-    caches.match(event.request)
-      .then(function(response) {
-        // Return cached version or fetch from network
+  // Do nothing - let requests go through normally
+  return;
+});
         if (response) {
           return response;
         }

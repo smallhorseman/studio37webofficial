@@ -39,5 +39,8 @@ export default defineConfig({
     alias: {
       // Add any necessary aliases here if needed
     }
-  }
+  },
+  // Exclude service worker from build to prevent issues
+  publicDir: 'public',
+  assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp']
 })
