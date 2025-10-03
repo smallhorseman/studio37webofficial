@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --color-dark: #181818;
+  --color-dark-secondary: #262626;
+  --color-cream: #F3E3C3;
+  --color-cream-dark: #E6D5B8;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-[#181818] text-[#F3E3C3] font-sans antialiased;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  .font-vintage {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    @apply font-bold;
+  }
+  
+  .section-padding {
+    @apply py-12 px-6;
+  }
+  
+  .section-padding-lg {
+    @apply py-20 px-6;
+  }
+  
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .bg-dark {
+    background-color: var(--color-dark);
+  }
+  
+  .bg-dark-secondary {
+    background-color: var(--color-dark-secondary);
+  }
+  
+  .text-cream {
+    color: var(--color-cream);
+  }
+  
+  .bg-cream {
+    background-color: var(--color-cream);
+  }
+  
+  .border-cream {
+    border-color: var(--color-cream);
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .animate-slideInRight {
+    animation: slideInRight 0.3s ease-out;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #262626;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #F3E3C3;
+    border-radius: 3px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #E6D5B8;
+  }
+}
+
+/* Focus styles for accessibility */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-[#F3E3C3] focus:ring-offset-2 focus:ring-offset-[#181818];
+  }
+}

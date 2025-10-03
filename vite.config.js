@@ -29,5 +29,15 @@ export default defineConfig({
   },
   define: {
     global: 'globalThis',
+  },
+  // Ensure compatibility with different environments
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom', '@supabase/supabase-js', 'lucide-react']
+  },
+  // Handle potential module resolution issues
+  resolve: {
+    alias: {
+      // Add any necessary aliases here if needed
+    }
   }
 })
