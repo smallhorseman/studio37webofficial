@@ -5,9 +5,9 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    sourcemap: false,
-    chunkSizeWarningLimit: 1000,
-    rollupOptions: {
+    sourcemap: false
+  }
+})
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],

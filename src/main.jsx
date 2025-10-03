@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
 import App from '../App.jsx'
 import './index.css'
 
@@ -92,15 +91,16 @@ document.body.classList.add('app-loading');
 root.render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <App />
     </ErrorBoundary>
   </React.StrictMode>
 );
 
 // Remove loading state after React has mounted
 setTimeout(() => {
+  document.body.classList.remove('app-loading');
+  document.body.classList.add('app-loaded');
+}, 100);
   document.body.classList.remove('app-loading');
   document.body.classList.add('app-loaded');
 }, 100);
