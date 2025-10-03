@@ -1,0 +1,21 @@
+{
+  "name": "Studio37 - Professional Photography",
+  "short_name": "Studio37",
+  "description": "Professional photography with vintage heart and modern vision",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#181818",
+  "theme_color": "#F3E3C3",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/camera-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["photography", "business", "lifestyle"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
